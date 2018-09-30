@@ -31,9 +31,9 @@ object HttpService extends App {
 
   private val repositoryImpl: BankCollection = new BankCollectionImpl
 
-  repositoryImpl.createBank(BankRequest("SBI", "New Delhi"))
-  repositoryImpl.createBank(BankRequest("PNB", "New Delhi"))
-  repositoryImpl.createBank(BankRequest("RBS", "New Delhi"))
+  repositoryImpl.createBank(BankRequest("HSBC Bank", "New Delhi"))
+  repositoryImpl.createBank(BankRequest("CITI Bank", "New Delhi"))
+  repositoryImpl.createBank(BankRequest("RBS Bank", "New Delhi"))
 
   Http().bindAndHandle(bankService.bankRoutes, "localhost", 9000)
 

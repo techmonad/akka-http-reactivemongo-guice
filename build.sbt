@@ -2,7 +2,7 @@ name := "akka-http-reactivemongo-guice"
 
 version := "1.0"
 
-scalaVersion := "2.11.11"
+scalaVersion := "2.11.12"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % "10.1.5",

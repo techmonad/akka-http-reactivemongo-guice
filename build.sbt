@@ -13,5 +13,5 @@ libraryDependencies ++= Seq(
   "net.codingwell" %% "scala-guice" % "5.0.0",
   "org.json4s" %% "json4s-native" % "3.5.5",
   "org.scalatest" %% "scalatest" % "3.0.9" % "test",
-  "com.typesafe.akka" %% "akka-http-testkit" % "10.1.14" % Test
+  "com.typesafe.akka" %% "akka-http-testkit" % "10.2.4" % Test
 )

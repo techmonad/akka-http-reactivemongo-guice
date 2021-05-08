@@ -8,6 +8,6 @@ import com.techmonad.conf.MongoConf
   */
 object Connection {
 
-  implicit lazy val db = new DB(MongoConf.uri, MongoConf.dbName)
+  implicit lazy val db = new Database(MongoConf.uri, MongoConf.dbName)
 
 }

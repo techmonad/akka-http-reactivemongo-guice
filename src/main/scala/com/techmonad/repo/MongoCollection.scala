@@ -2,11 +2,13 @@ package com.techmonad.repo
 
 import com.techmonad.utils.Logger
 import reactivemongo.api.Cursor
-import reactivemongo.api.collections.bson.BSONCollection
-import reactivemongo.bson.{BSONBoolean, BSONDocument, BSONDocumentReader, BSONDocumentWriter, BSONDouble, BSONInteger, BSONLong, BSONNull, BSONString, BSONValue}
+import reactivemongo.api.bson.collection.BSONCollection
+import reactivemongo.api.bson.{BSONBoolean, BSONDocument, BSONDocumentReader, BSONDocumentWriter, BSONDouble, BSONInteger, BSONLong, BSONNull, BSONString, BSONValue}
+import reactivemongo.api.commands.WriteResult
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
+import scala.util.{Failure, Success}
 
 /**
   * @author Anand String (anand-singh)
@@ -63,7 +65,7 @@ trait MongoCollection extends Logger {
     * @return The Future of status
     */
   def insert[M](document: M)(implicit writer: BSONDocumentWriter[M]): Future[Boolean] = {
-    collection.flatMap(_.insert(document).map(result => result.ok))
+    collection.flatMap(_.insert.one(document).map(_.n > 0))
   }
 
   /**
@@ -77,12 +79,12 @@ trait MongoCollection extends Logger {
     */
   def update[M](criteria: Map[String, Any], document: M)(implicit writer: BSONDocumentWriter[M]): Future[Int] = {
     val selector = BSONDocument(criteria.map(mapToDocument))
-    collection.flatMap(_.update(selector, document).map(_.n))
+    collection.flatMap(_.update.one(selector, document).map(_.n))
   }
 
   def delete(criteria: Map[String, Any]): Future[Int] = {
     val selector = BSONDocument(criteria.map(mapToDocument))
-    collection.flatMap(_.remove(selector).map(_.n))
+    collection.flatMap(_.delete.one(selector).map(_.n))
   }
 
 }

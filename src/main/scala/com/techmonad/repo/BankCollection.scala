@@ -3,11 +3,11 @@ package com.techmonad.repo
 import com.techmonad.conf.MongoConf
 import com.techmonad.connection.Connection
 import com.techmonad.domains.{Bank, BankRequest}
-import reactivemongo.api.collections.bson.BSONCollection
-import reactivemongo.bson.{BSONDocumentReader, BSONDocumentWriter, BSONObjectID, Macros}
+import reactivemongo.api.bson.collection.BSONCollection
+import reactivemongo.api.bson.{BSONDocumentReader, BSONDocumentWriter, BSONObjectID, Macros}
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 /**
   * @author Anand String (anand-singh)

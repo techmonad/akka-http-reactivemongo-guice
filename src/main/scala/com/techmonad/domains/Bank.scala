@@ -1,6 +1,6 @@
 package com.techmonad.domains
 
-import reactivemongo.bson.Macros.Annotations.Key
+import reactivemongo.api.bson.Macros.Annotations.Key
 
 /**
   * @author Anand String (anand-singh)

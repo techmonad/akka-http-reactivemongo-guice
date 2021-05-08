@@ -1,7 +1,7 @@
 package com.techmonad.connection
 
-import reactivemongo.api.collections.bson.BSONCollection
-import reactivemongo.api.{DefaultDB, MongoConnection, MongoDriver}
+import reactivemongo.api.bson.collection.BSONCollection
+import reactivemongo.api.{AsyncDriver, DB, MongoConnection}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -12,10 +12,10 @@ import scala.concurrent.Future
   * @author Anand String (anand-singh)
   * @since September 29 2018
   */
-class DB(uri: String, dbName: String) {
+class Database(uri: String, dbName: String) {
 
   // get connection to the database
-  val defaultDB: Future[DefaultDB] = createConnection(uri, dbName)
+  val defaultDB: Future[DB] = createConnection(uri, dbName)
 
   /**
     * Return a simple collection
@@ -27,15 +27,17 @@ class DB(uri: String, dbName: String) {
   /**
     * Create the connection
     */
-  private def createConnection(uri: String, dbName: String): Future[DefaultDB] = {
+  private def createConnection(uri: String, dbName: String): Future[DB] = {
     // Connect to the database: Must be done only once per application
-    val driver = MongoDriver()
-    val parsedUri = MongoConnection.parseURI(uri)
-    val connection = parsedUri.map(driver.connection)
+    val driver = AsyncDriver()
+
+    val connection = for {
+      parsedUri <- MongoConnection.fromString(uri)
+      connection <- driver.connect(parsedUri)
+    } yield connection
 
     // Gets a reference to the database
-    val futureConnection = Future.fromTry(connection)
-    futureConnection.flatMap(_.database(dbName))
+    connection.flatMap(_.database(dbName))
   }
 
 }

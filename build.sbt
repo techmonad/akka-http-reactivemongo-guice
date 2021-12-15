@@ -12,6 +12,6 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.2.6",
   "net.codingwell" %% "scala-guice" % "5.0.1",
   "org.json4s" %% "json4s-native" % "4.0.3",
-  "org.scalatest" %% "scalatest" % "3.2.9" % "test",
+  "org.scalatest" %% "scalatest" % "3.2.10" % "test",
   "com.typesafe.akka" %% "akka-http-testkit" % "10.2.5" % Test
 )

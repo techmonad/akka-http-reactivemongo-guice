@@ -7,7 +7,7 @@ scalaVersion := "2.13.5"
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % "10.2.8",
   "com.typesafe.akka" %% "akka-stream" % "2.6.15",
-  "com.typesafe" % "config" % "1.4.1",
+  "com.typesafe" % "config" % "1.4.2",
   "org.reactivemongo" %% "reactivemongo" % "1.0.10",
   "ch.qos.logback" % "logback-classic" % "1.2.6",
   "net.codingwell" %% "scala-guice" % "5.0.1",

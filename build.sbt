@@ -11,7 +11,7 @@ libraryDependencies ++= Seq(
   "org.reactivemongo" %% "reactivemongo" % "1.0.10",
   "ch.qos.logback" % "logback-classic" % "1.4.1",
   "net.codingwell" %% "scala-guice" % "5.1.0",
-  "org.json4s" %% "json4s-native" % "4.0.5",
+  "org.json4s" %% "json4s-native" % "4.0.6",
   "org.scalatest" %% "scalatest" % "3.2.14" % "test",
   "com.typesafe.akka" %% "akka-http-testkit" % "10.2.9" % Test
 )
